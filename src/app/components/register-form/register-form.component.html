@@ -21,8 +21,8 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="field">
-      <mat-label for="password">Confirm password</mat-label>
-      <input matInput type="password" id="password" formControlName="password">
+      <mat-label for="confirmPassword">Confirm password</mat-label>
+      <input matInput type="password" id="confirmPassword" formControlName="confirmPassword">
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="field">
@@ -73,6 +73,23 @@
       <mat-label for="zipCode">Zip Code</mat-label>
       <input matInput id="zipCode" formControlName="zipCode">
     </mat-form-field>
+
+    <div formArrayName="skills">
+      <h2>Skills</h2>
+      <button mat-raised-button color="primary" (click)="addSkill()">Add a skill</button>
+
+      <div class="skillField" *ngFor="let skill of skills.controls; let i = index">
+        <mat-form-field appearance="fill" class="field">
+          <mat-label>Skill {{i+1}}</mat-label>
+          <input matInput [formControlName]="i">
+        </mat-form-field>
+        <button type="button" mat-raised-button color="primary" (click)="removeSkill(i)">X</button>
+      </div>
+    </div>
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+
+
+
   </form>
 
 </section>
