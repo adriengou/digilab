@@ -1,0 +1,46 @@
+form{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 400px;
+}
+
+.group{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.field{
+  width: 100%;
+}
+
+.phoneInput{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.countryImage{
+  width: 25px;
+
+  flex-grow: 0;
+}
+
+.dialCode{
+  padding: 5px;
+  border-radius: 10%;
+  height: 100%;
+  background-color: darken($color: #F5F5F5, $amount: 20);
+  box-sizing: border-box;
+}
+
+.phoneField > input:focus{
+  background-color: red;
+}
+
+.phoneLabel{
+  transition: none;
+}

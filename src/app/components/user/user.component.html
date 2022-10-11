@@ -1,0 +1,15 @@
+<section>
+  <mat-list role="list">
+    <mat-list-item class="item" role="listitem" *ngFor="let user of usersData; let index=index;">
+      <div class="card-content">
+        <img matListAvatar [src]="user.avatar" alt="...">
+        <div class="name">
+          <span>{{user.first_name}}</span>
+          <span>{{user.last_name}}</span>
+        </div>
+        <span>{{user.email}}</span>
+        <span></span>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</section>
