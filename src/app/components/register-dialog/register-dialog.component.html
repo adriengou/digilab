@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{status}}</h1>
+<div mat-dialog-content>
+  <h2>Form</h2>
+  <div class="allFields">
+    <div class="fieldValue" *ngFor="let value of data.formValues | keyvalue">
+      <mat-card>
+        {{value.key}}:
+      </mat-card>
+      <mat-card>
+        {{value.value}}
+      </mat-card>
+    </div>
+  </div>
+  <h2>Response</h2>
+  <mat-card>
+    {{data.response | json}}
+  </mat-card>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+</div>
