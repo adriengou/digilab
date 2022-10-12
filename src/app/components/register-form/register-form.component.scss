@@ -1,20 +1,21 @@
+section{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  height: 100%;
+  padding: 20px;
+}
+
 form {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   gap: 5px;
-  width: 400px;
-}
-
-.group {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-.field {
   width: 100%;
 }
+
 
 .phoneInput {
   display: flex;
@@ -25,27 +26,33 @@ form {
 
 .countryImage {
   width: 25px;
-
   flex-grow: 0;
 }
 
 .dialCode {
+  border-style: none;
+  width: fit-content;
   padding: 5px;
+  padding-right: 0;
   border-radius: 10%;
   height: 100%;
   background-color: darken($color: #f5f5f5, $amount: 20);
-  box-sizing: border-box;
+  // box-sizing: border-box;
 }
 
 .phoneField > input:focus {
   background-color: red;
 }
 
-.phoneLabel {
-  transition: none;
-}
-
 .skillField {
   display: flex;
   align-items: center;
+}
+
+.skillField > .field>button{
+  height: 20px;
+  width: 10px;
+}
+
+.field{
 }

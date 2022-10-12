@@ -19,6 +19,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+import {MatIconModule} from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +35,7 @@ import { MatButtonModule } from '@angular/material/button';
     RegisterFormComponent,
     ChatComponent,
     PhoneCountryFormFieldComponent,
+    RegisterDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +49,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatAutocompleteModule,
     MatButtonModule,
+    MatDialogModule,
+    NgxMaskModule.forRoot(),
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

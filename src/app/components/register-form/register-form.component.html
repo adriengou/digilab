@@ -48,11 +48,12 @@
 
 
     <mat-form-field appearance="fill" class="field phoneField">
-      <mat-label class="phoneLabel" for="phoneNumber">Phone Number</mat-label>
+      <!-- <mat-label class="phoneLabel" for="phoneNumber">Phone Number</mat-label> -->
       <div class="phoneInput">
         <img class="countryImage" [src]="countryFlag" alt="">
-        <span class="dialCode" *ngIf="dialCode">{{dialCode}}</span>
-        <input matInput id="phoneNumber" formControlName="phoneNumber" value="0">
+        <input [size]="3" class="dialCode" *ngIf="dialCode" formControlName="dialCode" readonly="readonly">
+        <input matInput id="phoneNumber" mask="00 00 00 00 00" formControlName="phoneNumber" value="0"
+          placeholder="Phone Number">
       </div>
     </mat-form-field>
 
@@ -76,20 +77,18 @@
 
     <div formArrayName="skills">
       <h2>Skills</h2>
-      <button mat-raised-button color="primary" (click)="addSkill()">Add a skill</button>
+      <button type="button" mat-raised-button color="primary" (click)="addSkill()">Add a skill</button>
 
       <div class="skillField" *ngFor="let skill of skills.controls; let i = index">
         <mat-form-field appearance="fill" class="field">
           <mat-label>Skill {{i+1}}</mat-label>
           <input matInput [formControlName]="i">
+          <button matPrefix type="button" mat-icon-button color="warn" (click)="removeSkill(i)">
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-form-field>
-        <button type="button" mat-raised-button color="primary" (click)="removeSkill(i)">X</button>
       </div>
     </div>
-    <button type="submit" mat-raised-button color="primary">Submit</button>
-
-
-
+    <button [disabled]="false" type="submit" mat-raised-button color="primary">Submit</button>
   </form>
-
 </section>

@@ -53,11 +53,11 @@ export class CountriesService {
    * @param  {string} countryName
    * @returns Promise
    */
-  public async getDialCode(countryName:string):Promise<string | boolean>{
+  public async getDialCode(countryName:string):Promise<string>{
     let data = await this.getData();
     data = data.filter((value:any)=>value.name === countryName)
                 .map((value:any) => value.dial_code)
-    return data || false;
+    return data[0];
   }
 
 

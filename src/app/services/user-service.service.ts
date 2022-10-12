@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  private _apiUrl = 'http://reqres.in/api';
+  private _apiUrl = 'https://cors-anywhere.herokuapp.com/http://reqres.in/api';
 
   constructor(private http: HttpClient) {}
 

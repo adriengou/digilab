@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { Validator } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { CountriesService } from '../../services/countries.service';
 import { Observable, tap, Subscription, startWith, map } from 'rxjs';
 import { UserService } from '../../services/user-service.service';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
+import { CdkPortal } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-register-form',
@@ -14,33 +16,35 @@ export class RegisterFormComponent implements OnInit {
   private _registerForm!: FormGroup;
   public _filteredCountries!: undefined | Observable<any>;
   public countryFlag!: string | boolean;
-  public dialCode: string | boolean = '+00';
+  public dialCode: string = '+00';
+
 
   constructor(
     private fb: FormBuilder,
     private countriesService: CountriesService,
-    private userService: UserService
+    private userService: UserService,
+    public dialog:MatDialog,
   ) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      username: [''],
-      password: [''],
-      confirmPassword: [''],
-      email: [''],
-      birthDate: [''],
-      phoneNumber: [' '],
-      street: [''],
-      city: [''],
-      country: [''],
-      zipCode: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['',Validators.required],
+      email: ['',Validators.email],
+      birthDate: ['',Validators.required],
+      dialCode:[this.dialCode,Validators.required],
+      phoneNumber: [' ',Validators.required],
+      street: ['',Validators.required],
+      city: ['',Validators.required],
+      country: ['',Validators.required],
+      zipCode: ['',Validators.required],
       skills: this.fb.array([this.fb.control('')]),
     });
 
     this.countriesService.getAllCountries().then((countries: string[]) => {
-      console.log(countries);
       this._filteredCountries = this.registerForm
         .get('country')
         ?.valueChanges.pipe(
@@ -61,18 +65,20 @@ export class RegisterFormComponent implements OnInit {
         });
 
         this.countriesService.getDialCode(value).then((dial) => {
-          this.dialCode = dial || '';
+          this.registerForm.patchValue({dialCode: dial})
+          console.log(this.dialCode);
         });
       });
   }
 
-  onSubmit() {
+  onSubmit():void {
     let formValues = this.registerForm.getRawValue();
     console.log(formValues);
     let obs = this.userService.sendUser(formValues);
     obs.subscribe((value) => {
       console.log('post response');
       console.log(value);
+      this.openDialog('250ms', '250ms', formValues, value)
     });
   }
 
@@ -83,6 +89,11 @@ export class RegisterFormComponent implements OnInit {
     this._registerForm = value;
   }
 
+  /**
+   * @param  {string[]} countries
+   * @param  {string} value
+   * @returns string
+   */
   private _filterCountries(countries: string[], value: string): string[] {
     const filterValue = value.toLowerCase();
     return countries.filter((option) =>
@@ -90,25 +101,60 @@ export class RegisterFormComponent implements OnInit {
     );
   }
 
-  public formatPhoneNumber(number: string) {
-    let formattedPhoneNumber = '*** *******';
-
-    for (const n of number) {
-      formattedPhoneNumber = formattedPhoneNumber.replace('*', n);
-    }
-
-    return formattedPhoneNumber;
-  }
-
   get skills(): FormArray {
     return this.registerForm.get('skills') as FormArray;
   }
 
-  addSkill() {
+  /**
+   */
+  addSkill():void {
     this.skills.push(this.fb.control(''));
   }
 
-  removeSkill(index: number) {
+
+  /**
+   * @param  {number} index
+   */
+  removeSkill(index: number):void {
     this.skills.removeAt(index);
   }
+
+
+  /**
+   * @param  {string} enterAnimationDuration
+   * @param  {string} exitAnimationDuration
+   * @param  {any} formValues
+   * @param  {any} response
+   */
+  openDialog(enterAnimationDuration:string, exitAnimationDuration:string, formValues:any, response:any):void{
+    this.dialog.open(RegisterDialogComponent,{
+      width:"600px",
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data:{
+        formValues,response
+      }
+    })
+  }
+
+  /**
+   * Check if the 2 passwords fields have the same value
+   * @returns boolean
+   */
+  validateForm():boolean{
+    let password = this.registerForm.get("password")?.value
+    let confirmPassword = this.registerForm.get("confirmPassword")?.value
+    return password === confirmPassword && !this.registerForm.invalid;
+  }
 }
+
+
+
+//Directory component
+//Formulaire avec les champs suivants: nom, path, id, description
+//L'id doit être aléatoire
+//Service pour envoyer le formulaire à l'api reqres.in
+
+//weather component
+//formulaire avec les champs: pays, ville, code postal, rue
+//affiche la météo à l'addresse complete rentrée dans un formulaire
