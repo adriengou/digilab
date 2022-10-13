@@ -1,4 +1,4 @@
-section{
+section {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -15,7 +15,6 @@ form {
   gap: 5px;
   width: 100%;
 }
-
 
 .phoneInput {
   display: flex;
@@ -49,10 +48,19 @@ form {
   align-items: center;
 }
 
-.skillField > .field>button{
+.skillField > .field > button {
   height: 20px;
   width: 10px;
 }
 
-.field{
+.field {
+}
+
+.address {
+  display: flex;
+  gap: 10px;
+}
+
+.address > * {
+  flex-grow: 1;
 }

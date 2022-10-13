@@ -1,10 +1,40 @@
-.fieldValue{
+.fieldValue {
   display: flex;
   gap: 15px;
 }
 
-.allFields{
+.allFields {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.right-column {
+  flex-grow: 1;
+}
+
+.card {
+  height: 25px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-bottom: 25px;
+  vertical-align: middle;
+}
+
+.phone {
+  display: flex;
+  gap: 1ch;
 }

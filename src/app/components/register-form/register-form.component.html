@@ -34,18 +34,32 @@
       <mat-label for="birthDate">Birth Date</mat-label>
       <input matInput id="birthDate" formControlName="birthDate" type="date">
     </mat-form-field>
+    <div class="address">
+      <mat-form-field appearance="fill" class="field">
+        <mat-label for="country">Country</mat-label>
+        <input matInput id="country" formControlName="country" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of _filteredCountries | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill" class="field">
-      <mat-label for="country">Country</mat-label>
-      <input matInput id="country" formControlName="country" [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let option of _filteredCountries | async" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+      <mat-form-field appearance="fill" class="field">
+        <mat-label for="street">Street</mat-label>
+        <input matInput id="street" formControlName="street">
+      </mat-form-field>
 
+      <mat-form-field appearance="fill" class="field">
+        <mat-label for="city">City</mat-label>
+        <input matInput id="city" formControlName="city">
+      </mat-form-field>
 
+      <mat-form-field appearance="fill" class="field">
+        <mat-label for="zipCode">Zip Code</mat-label>
+        <input matInput id="zipCode" formControlName="zipCode">
+      </mat-form-field>
+    </div>
 
     <mat-form-field appearance="fill" class="field phoneField">
       <!-- <mat-label class="phoneLabel" for="phoneNumber">Phone Number</mat-label> -->
@@ -56,25 +70,6 @@
           placeholder="Phone Number">
       </div>
     </mat-form-field>
-
-
-
-
-    <mat-form-field appearance="fill" class="field">
-      <mat-label for="street">Street</mat-label>
-      <input matInput id="street" formControlName="street">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" class="field">
-      <mat-label for="city">City</mat-label>
-      <input matInput id="city" formControlName="city">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" class="field">
-      <mat-label for="zipCode">Zip Code</mat-label>
-      <input matInput id="zipCode" formControlName="zipCode">
-    </mat-form-field>
-
     <div formArrayName="skills">
       <h2>Skills</h2>
       <button type="button" mat-raised-button color="primary" (click)="addSkill()">Add a skill</button>

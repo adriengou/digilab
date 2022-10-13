@@ -23,6 +23,7 @@ import { RegisterDialogComponent } from './components/register-dialog/register-d
 import {MatDialogModule} from '@angular/material/dialog';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import {MatIconModule} from '@angular/material/icon';
+import { DirectoryFormComponent } from './components/directory-form/directory-form.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {MatIconModule} from '@angular/material/icon';
     ChatComponent,
     PhoneCountryFormFieldComponent,
     RegisterDialogComponent,
+    DirectoryFormComponent,
   ],
   imports: [
     BrowserModule,

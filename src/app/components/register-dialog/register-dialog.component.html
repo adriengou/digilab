@@ -2,20 +2,59 @@
 <div mat-dialog-content>
   <h2>Form</h2>
   <div class="allFields">
-    <div class="fieldValue" *ngFor="let value of data.formValues | keyvalue">
-      <mat-card>
-        {{value.key}}:
-      </mat-card>
-      <mat-card>
-        {{value.value}}
-      </mat-card>
+    <div class="columns">
+      <div class="left-column">
+        <p class="card">First Name</p>
+        <p class="card">Last Name</p>
+        <p class="card">Username</p>
+        <p class="card">Password</p>
+        <p class="card">Email</p>
+        <p class="card">Birth Date</p>
+        <p class="card">Country</p>
+        <p class="card">City</p>
+        <p class="card">Street</p>
+        <p class="card">Zip Code</p>
+        <p class="card">Phone Number</p>
+      </div>
+      <div class="right-column">
+        <p class="card">
+          {{data.formValues.firstName}}
+        </p>
+        <p class="card">
+          {{data.formValues.lastName}}
+        </p>
+        <p class="card">
+          {{data.formValues.username}}
+        </p>
+        <p class="card">
+          {{data.formValues.password}}
+        </p>
+        <p class="card">
+          {{data.formValues.email}}
+        </p>
+        <p class="card">
+          {{data.formValues.birthDate}}
+        </p>
+        <p class="card">
+          {{data.formValues.country}}
+        </p>
+        <p class="card">
+          {{data.formValues.street}}
+        </p>
+        <p class="card">
+          {{data.formValues.city}}
+        </p>
+        <p class="card">
+          {{data.formValues.zipCode}}
+        </p>
+        <p class="card phone">
+          <span>{{data.formValues.dialCode}}</span>
+          <span mask="00 00 00 00 00">{{data.formValues.phoneNumber}}</span>
+
+        </p>
+      </div>
     </div>
   </div>
-  <h2>Response</h2>
-  <mat-card>
-    {{data.response | json}}
-  </mat-card>
-
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
