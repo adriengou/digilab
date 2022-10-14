@@ -4,7 +4,7 @@ export class Directory {
   public description!: string;
   public id!: number;
 
-  constructor(name: string, path: string, description: string, id: number) {
+  constructor(name: string, path: string, description: string, id?: number) {
     this.name = name;
     this.path = path;
     this.description = description;

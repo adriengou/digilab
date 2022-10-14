@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Directory } from '../models/directory.model';
@@ -7,10 +7,26 @@ import { Directory } from '../models/directory.model';
   providedIn: 'root',
 })
 export class DirectoryServiceService {
-  private _apiUrl =
-    'https://cors-anywhere.herokuapp.com/https://6347f7d1db76843976b709f4.mockapi.io/api/directories';
+  private _apiUrl = 'https://cors-anywhere.herokuapp.com/https://reqres.in/api/users';
+  public dirSubject = new Subject();
 
   constructor(private http: HttpClient) {}
+
+  //PASSING Directories data
+
+  /**
+   *
+   * @param {Directory} dir
+   */
+  addDirectory(dir:Directory):void{
+    let data = {
+      action:"create",
+      dir: dir,
+    }
+    this.dirSubject.next(data);
+  }
+
+  //API REQUESTS
 
   /**
    * GET - /:id
@@ -19,6 +35,15 @@ export class DirectoryServiceService {
    */
   getDirectory(id: number): Observable<any> {
     return this.http.get(`${this._apiUrl}/${id}`);
+  }
+
+  /**
+   * GET - /
+   * @param {number} id
+   * @returns {Observable<any>}
+   */
+  getAllDirectories(id:number):Observable<any>{
+    return this.http.get(`${this._apiUrl}/`);
   }
 
   /**
@@ -44,6 +69,6 @@ export class DirectoryServiceService {
     description: string
   ): Observable<any> {
     let dir = new Directory(name, path, description, id);
-    return this.http.post(`${this._apiUrl}/users/create`, dir);
+    return this.http.post(`${this._apiUrl}/`, dir);
   }
 }

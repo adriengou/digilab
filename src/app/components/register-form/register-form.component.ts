@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormControl,
   FormGroup,
   FormBuilder,
   FormArray,
   Validators,
 } from '@angular/forms';
 import { CountriesService } from '../../services/countries.service';
-import { Observable, tap, Subscription, startWith, map } from 'rxjs';
+import { Observable, startWith, map } from 'rxjs';
 import { UserService } from '../../services/user-service.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
-import { CdkPortal } from '@angular/cdk/portal';
+
 
 @Component({
   selector: 'app-register-form',
@@ -94,10 +93,13 @@ export class RegisterFormComponent implements OnInit {
     this._registerForm = value;
   }
 
+
   /**
-   * @param  {string[]} countries
-   * @param  {string} value
-   * @returns string
+   *
+   * @param {string[]} countries
+   * @param {string} value
+   * @returns {string[]}
+   * @private
    */
   private _filterCountries(countries: string[], value: string): string[] {
     const filterValue = value.toLowerCase();

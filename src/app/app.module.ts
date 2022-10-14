@@ -21,9 +21,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask'
 import {MatIconModule} from '@angular/material/icon';
-import { DirectoryFormComponent } from './components/directory-form/directory-form.component';
+import { DirectoryDialogComponent } from './components/directory-dialog/directory-dialog.component';
+import { DirectoriesComponent } from './components/directories/directories.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { DirectoryFormComponent } from './components/directory-form/directory-fo
     ChatComponent,
     PhoneCountryFormFieldComponent,
     RegisterDialogComponent,
-    DirectoryFormComponent,
+    DirectoryDialogComponent,
+    DirectoriesComponent,
   ],
   imports: [
     BrowserModule,
