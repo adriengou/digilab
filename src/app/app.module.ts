@@ -25,6 +25,7 @@ import { NgxMaskModule } from 'ngx-mask'
 import {MatIconModule} from '@angular/material/icon';
 import { DirectoryDialogComponent } from './components/directory-dialog/directory-dialog.component';
 import { DirectoriesComponent } from './components/directories/directories.component';
+import { WeatherDialogFormComponent } from './components/weather-dialog-form/weather-dialog-form.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { DirectoriesComponent } from './components/directories/directories.compo
     RegisterDialogComponent,
     DirectoryDialogComponent,
     DirectoriesComponent,
+    WeatherDialogFormComponent,
   ],
   imports: [
     BrowserModule,

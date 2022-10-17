@@ -54,6 +54,7 @@ export class DirectoryServiceService {
   createDirectory(dir: Directory): Observable<any> {
     return this.http.post(`${this._apiUrl}/users`, dir);
   }
+
   /**
    * PUT - /:id
    * @param  {number} id
