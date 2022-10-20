@@ -1,19 +1,23 @@
 section {
   width: 100%;
+  padding-top: 5%;
+  padding-bottom: 5%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow-y: auto;
   height: 100%;
-  padding: 20px;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  justify-content: center;
+
+  flex-wrap: nowrap;
   gap: 5px;
-  width: 100%;
+  width: 330px;
 }
 
 .phoneInput {
@@ -31,38 +35,38 @@ form {
 .dialCode {
   border-style: none;
   width: fit-content;
-  padding: 5px;
-  padding-right: 0;
+  padding: 5px 0 5px 5px;
   border-radius: 10%;
   height: 100%;
   background-color: darken($color: #f5f5f5, $amount: 20);
   // box-sizing: border-box;
 }
 
-.phoneField > input:focus {
-  background-color: red;
-}
-
-.skillField {
-  display: flex;
-  align-items: center;
-}
-
-.skillField > .field > button {
-  height: 20px;
-  width: 10px;
-}
-
-.field {
-}
 
 .address {
+  width: 100%;
   display: flex;
   gap: 10px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
-.address > * {
-  flex-grow: 1;
+.address > .field {
+  flex: 1 1;
+}
+
+.mat-form-field-infix{
+  width: 100% !important;
+}
+
+.submit-button{
+  width: 20%;
+  align-self: center;
 }
 
 
+@media screen and (min-width: 700px)  {
+  form{
+    width: 500px;
+  }
+}

@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="register-form.component.scss">
 <section>
+  <h1>Resgister</h1>
   <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
     <mat-form-field appearance="fill" class="field">
       <mat-label for="firstName">First Name</mat-label>
@@ -35,6 +36,7 @@
       <mat-label for="birthDate">Birth Date</mat-label>
       <input matInput id="birthDate" formControlName="birthDate" type="date">
     </mat-form-field>
+
     <div class="address">
       <mat-form-field appearance="fill" class="field">
         <mat-label for="country">Country</mat-label>
@@ -44,11 +46,6 @@
             {{option}}
           </mat-option>
         </mat-autocomplete>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" class="field">
-        <mat-label for="street">Street</mat-label>
-        <input matInput id="street" formControlName="street">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="field">
@@ -62,6 +59,11 @@
       </mat-form-field>
     </div>
 
+    <mat-form-field appearance="fill" class="field">
+      <mat-label for="street">Street</mat-label>
+      <input matInput id="street" formControlName="street">
+    </mat-form-field>
+
     <mat-form-field appearance="fill" class="field phoneField">
       <!-- <mat-label class="phoneLabel" for="phoneNumber">Phone Number</mat-label> -->
       <div class="phoneInput">
@@ -71,20 +73,21 @@
           placeholder="Phone Number">
       </div>
     </mat-form-field>
-    <div formArrayName="skills">
       <h2>Skills</h2>
-      <button type="button" mat-raised-button color="primary" (click)="addSkill()">Add a skill</button>
-
-      <div class="skillField" *ngFor="let skill of skills.controls; let i = index">
-        <mat-form-field appearance="fill" class="field">
-          <mat-label>Skill {{i+1}}</mat-label>
-          <input matInput [formControlName]="i">
-          <button matPrefix type="button" mat-icon-button color="warn" (click)="removeSkill(i)">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-    </div>
-    <button [disabled]="false" type="submit" mat-raised-button color="primary">Submit</button>
+      <mat-form-field appearance="fill" class="field">
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip *ngFor="let skill of skills.controls; let i = index" (removed)="removeSkill(i)">
+            {{skill.value}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input placeholder="New skills..."
+                 [matChipInputFor]="chipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 (matChipInputTokenEnd)="addSkill($event)">
+        </mat-chip-list>
+      </mat-form-field>
+    <button class="submit-button" [disabled]="false" type="submit" mat-raised-button color="primary">Submit</button>
   </form>
 </section>

@@ -1,7 +1,77 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+//Components
+import {DirectoriesComponent} from "./components/directories/directories.component";
+import {MainComponent} from "./components/main/main.component";
+import {ChatComponent} from "./components/chat/chat.component";
+import {RegisterFormComponent} from "./components/register-form/register-form.component";
+import {RegisterDialogComponent} from "./components/register-dialog/register-dialog.component";
+import {LoginFormComponent} from "./components/login-form/login-form.component";
+import {AuthGuard} from "./guards/auth.guard";
+import {UserCardComponent} from "./components/user-list/user-card/user-card.component";
+import {UserListComponent} from "./components/user-list/user-list.component";
+
+const routes: Routes = [
+
+  {
+    path:'',
+    redirectTo:'/home',
+    pathMatch:'full',
+  },
+  {
+    path: 'home',
+    component: MainComponent,
+    canActivate: [ AuthGuard ],
+    children:[
+      {
+        path: 'directories',
+        component: DirectoriesComponent,
+        canActivate: [ AuthGuard ]
+      },
+      {
+        path: 'chat',
+        component: ChatComponent,
+        canActivate: [ AuthGuard ]
+      },
+    ]
+  },
+  {
+    path: 'directories',
+    component: DirectoriesComponent,
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'chat',
+    component: ChatComponent,
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'login',
+    component: LoginFormComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterFormComponent
+  },
+  {
+    path: 'registerdialog',
+    component: RegisterDialogComponent,
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'usercard',
+    component: UserCardComponent,
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'userlist',
+    component: UserListComponent,
+    canActivate: [ AuthGuard ]
+  },
+
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

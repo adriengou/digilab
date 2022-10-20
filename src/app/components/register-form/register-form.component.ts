@@ -10,6 +10,9 @@ import { Observable, startWith, map } from 'rxjs';
 import { UserService } from '../../services/user-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {MatChipInputEvent} from "@angular/material/chips";
+import {Register} from "../../models/register.model";
 
 
 @Component({
@@ -22,6 +25,8 @@ export class RegisterFormComponent implements OnInit {
   public _filteredCountries!: undefined | Observable<any>;
   public countryFlag!: string | boolean;
   public dialCode: string = '+00';
+
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   constructor(
     private fb: FormBuilder,
@@ -45,7 +50,7 @@ export class RegisterFormComponent implements OnInit {
       city: ['', Validators.required],
       country: ['', Validators.required],
       zipCode: ['', Validators.required],
-      skills: this.fb.array([this.fb.control('')]),
+      skills: this.fb.array([]),
     });
 
     this.countriesService.getAllCountries().then((countries: string[]) => {
@@ -76,13 +81,13 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    let formValues = this.registerForm.getRawValue();
+    let formValues = Object.assign(new Register(),this.registerForm.getRawValue())
     console.log(formValues);
-    let obs = this.userService.sendUser(formValues);
+    let obs = this.userService.register(formValues);
     obs.subscribe((value) => {
       console.log('post response');
       console.log(value);
-      this.openDialog('250ms', '250ms', formValues, value);
+      //this.openDialog('250ms', '250ms', formValues, value);
     });
   }
 
@@ -108,14 +113,25 @@ export class RegisterFormComponent implements OnInit {
     );
   }
 
+
+  /**
+   *
+   */
   get skills(): FormArray {
     return this.registerForm.get('skills') as FormArray;
   }
 
   /**
    */
-  addSkill(): void {
-    this.skills.push(this.fb.control(''));
+  addSkill(event:MatChipInputEvent): void {
+    const value = (event.value || '').trim()
+
+    if(value){
+      this.skills.push(this.fb.control(value));
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
   }
 
   /**

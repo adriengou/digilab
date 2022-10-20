@@ -1,31 +1,39 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserComponent } from './components/user/user.component';
-import { AgePipe } from './pipes/age-pipe.pipe';
-import { HttpClientModule } from '@angular/common/http';
-import { MatListModule } from '@angular/material/list';
-import { MatCardModule } from '@angular/material/card';
-import { CssUrlPipe } from './pipes/css-url.pipe';
-import { LoginFormComponent } from './components/login-form/login-form.component';
-import { RegisterFormComponent } from './components/register-form/register-form.component';
-import { ChatComponent } from './components/chat/chat.component';
-import { PhoneCountryFormFieldComponent } from './components/phone-country-form-field/phone-country-form-field.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
+import {AgePipe} from './pipes/age-pipe.pipe';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
+import {ChatComponent} from './components/chat/chat.component';
+import {CssUrlPipe} from './pipes/css-url.pipe';
+import {DirectoriesComponent} from './components/directories/directories.component';
+import {DirectoryDialogComponent} from './components/directory-dialog/directory-dialog.component';
+import {HttpClientModule} from '@angular/common/http';
+import {LoginFormComponent} from './components/login-form/login-form.component';
+import {MainComponent} from './components/main/main.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatButtonModule} from '@angular/material/button';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
-import { NgxMaskModule } from 'ngx-mask'
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
-import { DirectoryDialogComponent } from './components/directory-dialog/directory-dialog.component';
-import { DirectoriesComponent } from './components/directories/directories.component';
-import { WeatherDialogFormComponent } from './components/weather-dialog-form/weather-dialog-form.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {NgModule} from '@angular/core';
+import {NgxMaskModule} from 'ngx-mask'
+import {PhoneCountryFormFieldComponent} from './components/phone-country-form-field/phone-country-form-field.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {RegisterDialogComponent} from './components/register-dialog/register-dialog.component';
+import {RegisterFormComponent} from './components/register-form/register-form.component';
+import {UserComponent} from './components/user/user.component';
+import {WeatherComponent} from './components/weather/weather.component';
+import {WeatherDialogFormComponent} from './components/weather-dialog-form/weather-dialog-form.component';
+import {MatChipsModule} from "@angular/material/chips";
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserCardComponent } from './components/user-list/user-card/user-card.component';
 
 
 @NgModule({
@@ -42,6 +50,10 @@ import { WeatherDialogFormComponent } from './components/weather-dialog-form/wea
     DirectoryDialogComponent,
     DirectoriesComponent,
     WeatherDialogFormComponent,
+    WeatherComponent,
+    MainComponent,
+    UserListComponent,
+    UserCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,8 +70,13 @@ import { WeatherDialogFormComponent } from './components/weather-dialog-form/wea
     MatDialogModule,
     NgxMaskModule.forRoot(),
     MatIconModule,
+    MatProgressSpinnerModule,
+    MatButtonToggleModule,
+    MatToolbarModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}
