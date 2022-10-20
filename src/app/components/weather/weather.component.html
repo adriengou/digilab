@@ -1,0 +1,17 @@
+<section>
+  <h1>Weather</h1>
+  <mat-list>
+    <mat-list-item>
+      <mat-icon mat-list-icon>location_on</mat-icon>
+      <div mat-line>
+        <span>{{address.street}}, {{address.zipCode}}, {{address.city}}</span>
+      </div>
+    </mat-list-item>
+
+    <mat-list-item *ngIf="temperature">
+      <mat-icon mat-list-icon>thermostat</mat-icon>
+      <span mat-line> {{temperature}} °C</span>
+    </mat-list-item>
+  </mat-list>
+  <button (click)="openNewAddress()" mat-raised-button color="primary">Change Address</button>
+</section>

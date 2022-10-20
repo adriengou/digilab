@@ -1,0 +1,27 @@
+*{
+  margin: 0;
+}
+
+
+section{
+  //background-color: coral !important;
+  height: 100vh;
+}
+
+div{
+  //outline: 5px solid black;
+}
+
+.nav{
+  display: flex !important;
+  flex-direction: row !important;
+  height: 10% !important;
+  gap: 5px;
+}
+
+a{
+  flex: 1 1;
+  text-align: center;
+}
+
+
