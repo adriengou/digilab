@@ -1,0 +1,31 @@
+section{
+  height: 100%;
+  width: 100%;
+
+  //background-color: gray;
+  display: flex;
+  flex-direction: row;
+
+  padding: 5px;
+  gap: 5px;
+}
+
+.card-adri{
+  border-radius: 5px;
+  border: solid 1px lightgray;
+  box-shadow: 2px 2px 2px lightgray;
+}
+
+.panel{
+  padding: 5px;
+}
+
+.left-panel{
+  flex-basis: 20%;
+}
+
+.main-panel{
+  flex: 5;
+  min-width: 5%;
+  padding: 0;
+}

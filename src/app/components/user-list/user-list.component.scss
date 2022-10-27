@@ -1,0 +1,64 @@
+section{
+  width: 100%;
+  height: 100%;
+
+  //padding: 5px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.card-adri{
+  border-radius: 5px;
+  border: solid 1px lightgray;
+  box-shadow: 2px 2px 2px lightgray;
+  padding: 5px;
+}
+
+.top-bar, .list{
+  padding: 5px;
+}
+
+.top-bar{
+  flex: 1 1;
+}
+
+.list{
+  flex: 18 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.top-bar > *{
+  width: 100%;
+}
+
+.user{
+  height: 10%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: max(2%, 5px);
+  align-items: center;
+
+  padding: 5px 10px;
+}
+
+.image{
+  display: flex;
+  height: 90%;
+  aspect-ratio: 1 / 1;
+  background-color: coral;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+img{
+  width: 100%;
+}

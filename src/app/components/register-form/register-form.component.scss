@@ -1,6 +1,6 @@
 section {
   width: 100%;
-  padding-top: 5%;
+  padding-top: 2.5%;
   padding-bottom: 5%;
   display: flex;
   flex-direction: column;
@@ -44,15 +44,17 @@ form {
 
 
 .address {
+
   width: 100%;
   display: flex;
   gap: 10px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  //justify-content: flex-start;
+  //flex-wrap: wrap;
 }
 
 .address > .field {
-  flex: 1 1;
+  flex: 1 1 33% !important;
+  min-width: 0;
 }
 
 .mat-form-field-infix{
@@ -60,10 +62,13 @@ form {
 }
 
 .submit-button{
-  width: 20%;
+  width: 80px;
   align-self: center;
 }
 
+.zipCode{
+  width: 20%;
+}
 
 @media screen and (min-width: 700px)  {
   form{

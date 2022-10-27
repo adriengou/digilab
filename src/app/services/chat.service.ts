@@ -6,8 +6,8 @@ import {ChatUser} from "../models/chat-user.model";
 })
 export class ChatService {
   chatData = {
-    users: []
-    messages
+    //users: []
+    //messages
   }
 
   constructor() { }

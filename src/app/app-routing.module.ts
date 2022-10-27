@@ -11,6 +11,8 @@ import {LoginFormComponent} from "./components/login-form/login-form.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {UserCardComponent} from "./components/user-list/user-card/user-card.component";
 import {UserListComponent} from "./components/user-list/user-list.component";
+import {WeatherComponent} from "./components/weather/weather.component";
+import {ChatRoomComponent} from "./components/chat-room/chat-room.component";
 
 const routes: Routes = [
 
@@ -22,29 +24,29 @@ const routes: Routes = [
   {
     path: 'home',
     component: MainComponent,
-    canActivate: [ AuthGuard ],
+    // canActivate: [ AuthGuard ],
     children:[
       {
         path: 'directories',
         component: DirectoriesComponent,
-        canActivate: [ AuthGuard ]
+        // canActivate: [ AuthGuard ]
       },
       {
         path: 'chat',
         component: ChatComponent,
-        canActivate: [ AuthGuard ]
+        // canActivate: [ AuthGuard ]
       },
     ]
   },
   {
     path: 'directories',
     component: DirectoriesComponent,
-    canActivate: [ AuthGuard ]
+    // canActivate: [ AuthGuard ]
   },
   {
     path: 'chat',
     component: ChatComponent,
-    canActivate: [ AuthGuard ]
+    // canActivate: [ AuthGuard ]
   },
   {
     path: 'login',
@@ -57,20 +59,29 @@ const routes: Routes = [
   {
     path: 'registerdialog',
     component: RegisterDialogComponent,
-    canActivate: [ AuthGuard ]
+    // canActivate: [ AuthGuard ]
   },
   {
     path: 'usercard',
     component: UserCardComponent,
-    canActivate: [ AuthGuard ]
+    // canActivate: [ AuthGuard ]
   },
   {
     path: 'userlist',
     component: UserListComponent,
-    canActivate: [ AuthGuard ]
+    // canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'weather',
+    component: WeatherComponent,
+    // canActivate: [ AuthGuard ]
   },
 
-
+  {
+    path: 'chatroom',
+    component: ChatRoomComponent,
+    // canActivate: [ AuthGuard ]
+  },
 ];
 
 @NgModule({

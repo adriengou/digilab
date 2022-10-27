@@ -34,6 +34,7 @@ import {WeatherDialogFormComponent} from './components/weather-dialog-form/weath
 import {MatChipsModule} from "@angular/material/chips";
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserCardComponent } from './components/user-list/user-card/user-card.component';
+import { ChatRoomComponent } from './components/chat-room/chat-room.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { UserCardComponent } from './components/user-list/user-card/user-card.co
     MainComponent,
     UserListComponent,
     UserCardComponent,
+    ChatRoomComponent,
   ],
   imports: [
     BrowserModule,

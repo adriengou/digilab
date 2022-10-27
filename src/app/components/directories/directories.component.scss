@@ -1,7 +1,9 @@
 .line{
   display: flex !important;
   flex-direction: column !important;
-  gap: 1px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  gap: 5px;
   flex-wrap: wrap;
 }
 
@@ -41,10 +43,10 @@
 }
 
 
-@media screen and (min-width: 750px ){
+@media screen and (min-width: 650px ){
   .line{
     flex-direction: row !important;
-    gap: 50px;
+    justify-content: space-around;
   }
 }
 
