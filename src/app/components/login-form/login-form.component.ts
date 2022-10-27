@@ -4,6 +4,7 @@ import {UserService} from "../../services/user-service.service";
 import {Login} from "../../models/login.model";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-login-form',
@@ -13,6 +14,7 @@ import {Router} from "@angular/router";
 export class LoginFormComponent implements OnInit {
 
   private _loginForm!:FormGroup
+  private _user = new User()
 
   constructor(private _fb:FormBuilder,
               private _userService:UserService,
@@ -30,8 +32,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit(){
-    let {email, password} = this.loginForm.value
-    let login = new Login(email, password)
+    let login = this.loginForm.value
     this._userService.login(login).subscribe((response:any)=>{
       console.log(response)
       this._authService.authenticateFake();

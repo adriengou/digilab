@@ -3,7 +3,7 @@ import {
   FormGroup,
   FormBuilder,
   FormArray,
-  Validators,
+  Validators, FormControl,
 } from '@angular/forms';
 import { CountriesService } from '../../services/countries.service';
 import { Observable, startWith, map } from 'rxjs';
@@ -13,6 +13,11 @@ import { RegisterDialogComponent } from '../register-dialog/register-dialog.comp
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {Register} from "../../models/register.model";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {User} from "../../models/user.model";
+import {ControlsOf} from "../../helpers/types/controls-of";
+import {Room} from "../../models/room.model";
+import {Message} from "../../models/message.model";
 
 
 @Component({
@@ -21,35 +26,38 @@ import {Register} from "../../models/register.model";
   styleUrls: ['./register-form.component.scss'],
 })
 export class RegisterFormComponent implements OnInit {
-  private _registerForm!: FormGroup;
+
+  private _user = new User()
   public _filteredCountries!: undefined | Observable<any>;
   public countryFlag!: string | boolean;
   public dialCode: string = '+00';
-
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
+  private _registerForm!:FormGroup
 
   constructor(
     private fb: FormBuilder,
     private countriesService: CountriesService,
     private userService: UserService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-      email: ['', Validators.email],
-      birthDate: ['', Validators.required],
-      dialCode: [this.dialCode, Validators.required],
-      phoneNumber: [' ', Validators.required],
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-      country: ['', Validators.required],
-      zipCode: ['', Validators.required],
+      firstName: [this._user.firstName, Validators.required],
+      lastName: [this._user.lastName, Validators.required],
+      username: [this._user.username, Validators.required],
+      password: [this._user.password, Validators.required],
+      confirmPassword: [this._user.confirmPassword, Validators.required],
+      email: [this._user.email, Validators.email],
+      dateOfBirth: [this._user.dateOfBirth, Validators.required],
+      dialCode: [this._user.dialCode, Validators.required],
+      phoneNumber: [this._user.phoneNumber, Validators.required],
+      street: [this._user.street, Validators.required],
+      city: [this._user.city, Validators.required],
+      country: [this._user.country, Validators.required],
+      zipCode: [this._user.zipCode, Validators.required],
       skills: this.fb.array([]),
     });
 
@@ -81,9 +89,16 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    let formValues = Object.assign(new Register(),this.registerForm.getRawValue())
-    console.log(formValues);
-    let obs = this.userService.register(formValues);
+    Object.assign(this._user, this.registerForm.value)
+
+    let {password, confirmPassword} = this._user
+    if (password !== confirmPassword){
+      this.openSnackBar('Password and confirmed password do not match !','')
+      return
+    }
+
+    console.log(this._user);
+    let obs = this.userService.register(this._user);
     obs.subscribe((value) => {
       console.log('post response');
       console.log(value);
@@ -172,6 +187,13 @@ export class RegisterFormComponent implements OnInit {
     let password = this.registerForm.get('password')?.value;
     let confirmPassword = this.registerForm.get('confirmPassword')?.value;
     return password === confirmPassword && !this.registerForm.invalid;
+  }
+
+  openSnackBar(message: string, action: string){
+    this._snackBar.open(message, action, {
+      duration: 3000,
+      panelClass: 'snackbar'
+    })
   }
 }
 

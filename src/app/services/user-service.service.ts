@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {Register} from "../models/register.model";
-import {Login} from "../models/login.model";
+import {User} from "../models/user.model";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private _apiUrl = 'https://cors-anywhere.herokuapp.com/http://reqres.in/api';
+  private _apiUrl = `${environment.API_URL}:${environment.API_PORT}/api/users`;
 
   constructor(private http: HttpClient) {}
 
@@ -25,11 +25,11 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 
-  register(registerValues:Register){
+  register(registerValues:User){
     return this.http.post(`${this.apiUrl}/register`, registerValues);
   }
 
-  login(loginValues:Login){
+  login(loginValues:any){
     return this.http.post(`${this.apiUrl}/login`, loginValues);
   }
 

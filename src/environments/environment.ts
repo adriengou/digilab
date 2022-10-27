@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL:'',
-  API_PORT:'',
+  API_URL:'http://127.0.0.1',
+  API_PORT:'3000',
 };
 
 /*

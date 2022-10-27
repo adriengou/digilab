@@ -35,6 +35,7 @@ import {MatChipsModule} from "@angular/material/chips";
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserCardComponent } from './components/user-list/user-card/user-card.component';
 import { ChatRoomComponent } from './components/chat-room/chat-room.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { ChatRoomComponent } from './components/chat-room/chat-room.component';
     MatProgressSpinnerModule,
     MatButtonToggleModule,
     MatToolbarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],
