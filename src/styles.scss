@@ -3,7 +3,15 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.snackbar{
+.snackbar-valid{
+  text-align: center;
+  background-color: white;
+  border: 1px solid green;
+  color: green
+}
+
+.snackbar-invalid{
+  text-align: center;
   background-color: white;
   border: 1px solid red;
   color: red

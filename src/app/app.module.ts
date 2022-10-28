@@ -8,7 +8,7 @@ import {ChatComponent} from './components/chat/chat.component';
 import {CssUrlPipe} from './pipes/css-url.pipe';
 import {DirectoriesComponent} from './components/directories/directories.component';
 import {DirectoryDialogComponent} from './components/directory-dialog/directory-dialog.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LoginFormComponent} from './components/login-form/login-form.component';
 import {MainComponent} from './components/main/main.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -36,6 +36,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserCardComponent } from './components/user-list/user-card/user-card.component';
 import { ChatRoomComponent } from './components/chat-room/chat-room.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {InterceptorService} from "./services/interceptor.service";
 
 
 @NgModule({
@@ -79,7 +80,13 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatChipsModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:InterceptorService,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

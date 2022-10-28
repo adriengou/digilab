@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
   FormArray,
   Validators, FormControl,
 } from '@angular/forms';
-import { CountriesService } from '../../services/countries.service';
-import { Observable, startWith, map } from 'rxjs';
-import { UserService } from '../../services/user-service.service';
-import { MatDialog } from '@angular/material/dialog';
-import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
+import {CountriesService} from '../../services/countries.service';
+import {Observable, startWith, map} from 'rxjs';
+import {UserService} from '../../services/user-service.service';
+import {MatDialog} from '@angular/material/dialog';
+import {RegisterDialogComponent} from '../register-dialog/register-dialog.component';
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {Register} from "../../models/register.model";
@@ -18,6 +18,8 @@ import {User} from "../../models/user.model";
 import {ControlsOf} from "../../helpers/types/controls-of";
 import {Room} from "../../models/room.model";
 import {Message} from "../../models/message.model";
+import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -33,15 +35,18 @@ export class RegisterFormComponent implements OnInit {
   public dialCode: string = '+00';
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
-  private _registerForm!:FormGroup
+  private _registerForm!: FormGroup
 
   constructor(
     private fb: FormBuilder,
     private countriesService: CountriesService,
     private userService: UserService,
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar
-  ) {}
+    private _snackBar: MatSnackBar,
+    private _authService:AuthService,
+    private _router: Router
+  ) {
+  }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -74,41 +79,49 @@ export class RegisterFormComponent implements OnInit {
     this.registerForm
       .get('country')
       ?.valueChanges.subscribe((value: string) => {
-        console.log('value: ' + typeof value);
+      console.log('value: ' + typeof value);
 
-        this.countriesService.getFlag(value).then((flag) => {
-          this.countryFlag = flag || '';
-          console.log(this.countryFlag);
-        });
-
-        this.countriesService.getDialCode(value).then((dial) => {
-          this.registerForm.patchValue({ dialCode: dial });
-          console.log(this.dialCode);
-        });
+      this.countriesService.getFlag(value).then((flag) => {
+        this.countryFlag = flag || '';
+        console.log(this.countryFlag);
       });
+
+      this.countriesService.getDialCode(value).then((dial) => {
+        this.registerForm.patchValue({dialCode: dial});
+        console.log(this.dialCode);
+      });
+    });
   }
 
   onSubmit(): void {
     Object.assign(this._user, this.registerForm.value)
 
     let {password, confirmPassword} = this._user
-    if (password !== confirmPassword){
-      this.openSnackBar('Password and confirmed password do not match !','')
+    if (password !== confirmPassword) {
+      this.openSnackBar('Password and confirmed password do not match !', '',false)
       return
     }
 
+
+
     console.log(this._user);
-    let obs = this.userService.register(this._user);
-    obs.subscribe((value) => {
-      console.log('post response');
-      console.log(value);
-      //this.openDialog('250ms', '250ms', formValues, value);
+    this.userService.register(this._user).subscribe((response) => {
+      let {headers, status, body} = response
+      console.log(response)
+      this._authService.setToken(body.token)
+
+      this.openSnackBar('Account created !', '',true)
+
+      setTimeout(()=>{
+        this._router.navigate(['/'])
+      },2000)
     });
   }
 
   public get registerForm(): FormGroup {
     return this._registerForm;
   }
+
   public set registerForm(value: FormGroup) {
     this._registerForm = value;
   }
@@ -138,10 +151,10 @@ export class RegisterFormComponent implements OnInit {
 
   /**
    */
-  addSkill(event:MatChipInputEvent): void {
+  addSkill(event: MatChipInputEvent): void {
     const value = (event.value || '').trim()
 
-    if(value){
+    if (value) {
       this.skills.push(this.fb.control(value));
     }
 
@@ -189,10 +202,10 @@ export class RegisterFormComponent implements OnInit {
     return password === confirmPassword && !this.registerForm.invalid;
   }
 
-  openSnackBar(message: string, action: string){
+  openSnackBar(message: string, action: string, isValid:boolean) {
     this._snackBar.open(message, action, {
       duration: 3000,
-      panelClass: 'snackbar'
+      panelClass: isValid ? 'snackbar-valid' : 'snackbar-invalid'
     })
   }
 }

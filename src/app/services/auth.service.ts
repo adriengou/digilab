@@ -8,16 +8,11 @@ export class AuthService {
 
   constructor() { }
 
-  isAuthenticatedFake():Observable<boolean>{
-    let result = sessionStorage.getItem('isLoggedIn') == "true"
-    return of(result)
+  setToken(token:string){
+    localStorage.setItem('token', token)
   }
 
-  authenticateFake(){
-    sessionStorage.setItem('isLoggedIn', 'true')
-  }
-
-  logoutFake(){
-    sessionStorage.setItem('isLoggedIn', 'false')
+  getToken():any{
+    return localStorage.getItem('token') || false
   }
 }

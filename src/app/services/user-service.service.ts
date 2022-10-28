@@ -12,27 +12,18 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Get a list of users from reqres.in
-   * @param  {number} page
-   * @returns Observable
-   */
-  getRandomUsers(page: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/users?page=${page}`);
+
+  register(registerValues:User):Observable<any>{
+    return this.http.post(`${this.apiUrl}/register`, registerValues, {observe: 'response'});
   }
 
-  sendUser(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, user);
+  login(loginValues:any):Observable<any>{
+    return this.http.post(`${this.apiUrl}/login`, loginValues, {observe: 'response'});
   }
 
-  register(registerValues:User){
-    return this.http.post(`${this.apiUrl}/register`, registerValues);
+  getProfile():Observable<any>{
+    return this.http.get(`${this.apiUrl}/profile`,{observe: 'response'})
   }
-
-  login(loginValues:any){
-    return this.http.post(`${this.apiUrl}/login`, loginValues);
-  }
-
 
   public get apiUrl(): string {
     return this._apiUrl;

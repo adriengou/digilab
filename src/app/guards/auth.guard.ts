@@ -13,22 +13,8 @@ export class AuthGuard implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    return this._authService.isAuthenticatedFake().pipe(
-      map((response:boolean) => {
-        if (response) {
-          return true;
-        }
-        this._router.navigate(['/login']);
-        return false;
-      }),
-      catchError((error) => {
-        this._router.navigate(['/login']);
-        return of(false);
-      })
-    );
-
+    state: RouterStateSnapshot): boolean {
+    return this._authService.getToken()
   }
 
 }
