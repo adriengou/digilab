@@ -43,7 +43,7 @@ export class RegisterFormComponent implements OnInit {
     private userService: UserService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private _authService:AuthService,
+    private _authService: AuthService,
     private _router: Router
   ) {
   }
@@ -65,31 +65,23 @@ export class RegisterFormComponent implements OnInit {
       zipCode: [this._user.zipCode, Validators.required],
       skills: this.fb.array([]),
     });
-
-    this.countriesService.getAllCountries().then((countries: string[]) => {
-      this._filteredCountries = this.registerForm
-        .get('country')
-        ?.valueChanges.pipe(
-          startWith(''),
-          map((value) => this._filterCountries(countries, value || ''))
-          // tap(value=>console.log(value))
-        );
-    });
+    let countries = this.countriesService.getAllCountries()
+    this._filteredCountries = this.registerForm
+      .get('country')
+      ?.valueChanges.pipe(
+        startWith(''),
+        map((value) => this._filterCountries(countries, value || ''))
+        // tap(value=>console.log(value))
+      );
 
     this.registerForm
       .get('country')
       ?.valueChanges.subscribe((value: string) => {
       console.log('value: ' + typeof value);
 
-      this.countriesService.getFlag(value).then((flag) => {
-        this.countryFlag = flag || '';
-        console.log(this.countryFlag);
-      });
-
-      this.countriesService.getDialCode(value).then((dial) => {
-        this.registerForm.patchValue({dialCode: dial});
-        console.log(this.dialCode);
-      });
+      this.countryFlag = this.countriesService.getFlag(value)
+      let dial = this.countriesService.getDialCode(value)
+      this.registerForm.patchValue({dialCode: dial});
     });
   }
 
@@ -98,10 +90,9 @@ export class RegisterFormComponent implements OnInit {
 
     let {password, confirmPassword} = this._user
     if (password !== confirmPassword) {
-      this.openSnackBar('Password and confirmed password do not match !', '',false)
+      this.openSnackBar('Password and confirmed password do not match !', '', false)
       return
     }
-
 
 
     console.log(this._user);
@@ -110,11 +101,11 @@ export class RegisterFormComponent implements OnInit {
       console.log(response)
       this._authService.setToken(body.token)
 
-      this.openSnackBar('Account created !', '',true)
+      this.openSnackBar('Account created !', '', true)
 
-      setTimeout(()=>{
+      setTimeout(() => {
         this._router.navigate(['/'])
-      },2000)
+      }, 2000)
     });
   }
 
@@ -202,7 +193,7 @@ export class RegisterFormComponent implements OnInit {
     return password === confirmPassword && !this.registerForm.invalid;
   }
 
-  openSnackBar(message: string, action: string, isValid:boolean) {
+  openSnackBar(message: string, action: string, isValid: boolean) {
     this._snackBar.open(message, action, {
       duration: 3000,
       panelClass: isValid ? 'snackbar-valid' : 'snackbar-invalid'

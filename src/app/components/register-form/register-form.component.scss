@@ -16,7 +16,7 @@ form {
   justify-content: center;
 
   flex-wrap: nowrap;
-  gap: 5px;
+  gap: 0px;
   width: 330px;
 }
 
@@ -31,17 +31,6 @@ form {
   width: 25px;
   flex-grow: 0;
 }
-
-.dialCode {
-  border-style: none;
-  width: fit-content;
-  padding: 5px 0 5px 5px;
-  border-radius: 10%;
-  height: 100%;
-  background-color: darken($color: #f5f5f5, $amount: 20);
-  // box-sizing: border-box;
-}
-
 
 .address {
 
@@ -74,4 +63,37 @@ form {
   form{
     width: 500px;
   }
+}
+
+mat-form-field.mat-form-field{
+  padding: 0;
+  margin: 0;
+}
+
+.phone-row{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  height: fit-content;
+}
+
+.phone-row > .countryImage{
+  align-self: center;
+  //background-color: red;
+  height: 100%;
+  width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.countryImage > img{
+  width: 20px;
+  aspect-ratio: 3 / 2;
+}
+
+.phone-row > .dial-code-form{
+  width: 6ch;
 }

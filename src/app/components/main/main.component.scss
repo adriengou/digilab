@@ -1,35 +1,3 @@
-//*{
-//  margin: 0;
-//}
-//
-//
-//section{
-//  //background-color: coral !important;
-//  height: 100vh;
-//}
-//
-//div{
-//  //outline: 5px solid black;
-//}
-//
-//.nav{
-//  display: flex !important;
-//  flex-direction: row !important;
-//  height: 10% !important;
-//  gap: 5px;
-//}
-//
-//a{
-//  flex: 1 1;
-//  text-align: center;
-//}
-
-.card-adri{
-  border-radius: 5px;
-  border: solid 1px lightgray;
-  box-shadow: 2px 2px 2px lightgray;
-  padding: 5px;
-}
 
 section{
   padding: 5px;
@@ -106,7 +74,7 @@ section{
 
 
 
-@media screen and (max-width: 1270px ){
+@media screen and (max-width: 1000px ){
   .left-panel,.right-panel{
     display: none;
   }
