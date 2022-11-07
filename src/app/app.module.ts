@@ -37,7 +37,12 @@ import { UserCardComponent } from './components/user-list/user-card/user-card.co
 import { ChatRoomComponent } from './components/chat-room/chat-room.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {InterceptorService} from "./services/interceptor.service";
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import {environment} from "../environments/environment";
+import {Router, RouterModule} from "@angular/router";
+import {UserListResolver} from "./resolvers/user-list.resolver";
 
+const config: SocketIoConfig = { url: environment.API_URL, options: {} };
 
 @NgModule({
   declarations: [
@@ -78,8 +83,11 @@ import {InterceptorService} from "./services/interceptor.service";
     MatButtonToggleModule,
     MatToolbarModule,
     MatChipsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    SocketIoModule.forRoot(config),
+
   ],
+
   providers: [
     {
       provide:HTTP_INTERCEPTORS,

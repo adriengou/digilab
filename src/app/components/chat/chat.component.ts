@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../../services/user-service.service";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-chat',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
-  constructor() { }
+  users!:User[]
+
+  constructor(private _activatedRoute:ActivatedRoute,
+              private _userService:UserService,
+              ) { }
 
   ngOnInit(): void {
+    this._activatedRoute.data.subscribe(({userList})=>{
+      this.users = userList.body
+    })
   }
 
 }

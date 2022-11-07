@@ -8,7 +8,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root',
 })
 export class UserService {
-  private _apiUrl = `${environment.API_URL}:${environment.API_PORT}/api/users`;
+  private apiUrl = `${environment.API_URL}/api/users`;
 
   constructor(private http: HttpClient) {}
 
@@ -25,10 +25,21 @@ export class UserService {
     return this.http.get(`${this.apiUrl}/profile`,{observe: 'response'})
   }
 
-  public get apiUrl(): string {
-    return this._apiUrl;
+  getUsersList():Observable<any>{
+    return this.http.get(`${this.apiUrl}/list`, {observe: 'response'})
   }
-  public set apiUrl(value) {
-    this._apiUrl = value;
+
+  addFriend(friendName:string):Observable<any>{
+    return this.http.post(`${this.apiUrl}/addfriend`, {friendName:friendName},{observe: 'response'})
   }
+
+  removeFriend(friendName:string):Observable<any>{
+    return this.http.post(`${this.apiUrl}/removefriend`, {friendName:friendName},{observe: 'response'})
+  }
+
+  getFriends():Observable<any>{
+    return this.http.get(`${this.apiUrl}/friends`,{observe: 'response'})
+  }
+
+
 }

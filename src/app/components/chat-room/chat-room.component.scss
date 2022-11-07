@@ -7,11 +7,28 @@ section{
 }
 
 .top-bar{
-  flex: 1 1;
+  height: 10%;
+  display: flex;
+  gap: 5px;
+
+  align-items: center;
+}
+
+.user-name{
+  display: flex;
+  gap: 5px;
+}
+
+.image{
+  height: 90%;
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
 }
 
 .message-list{
-  flex: 18 1;
+  height: 80%;
 
   display: flex;
   flex-direction: column;
@@ -19,6 +36,8 @@ section{
 
   padding-top: 10px;
   padding-bottom: 10px;
+
+  overflow-y: auto;
 }
 
 .message{
@@ -29,7 +48,7 @@ section{
   overflow-wrap: break-word;
 }
 
-.message.left{
+.message{
   align-self: flex-start;
   $color: lighten(lightblue, 15);
   background-color: $color;
@@ -46,7 +65,7 @@ section{
 }
 
 .message-input{
-  flex: 1 1;
+  height: 10%;
 
   display: flex;
   flex-direction: row;
@@ -61,3 +80,4 @@ section{
 .message-input > mat-icon{
   width: fit-content;
 }
+

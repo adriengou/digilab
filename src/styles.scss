@@ -12,9 +12,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .snackbar-invalid{
   text-align: center;
-  background-color: white;
+  background-color: #ffffff;
   border: 1px solid red;
-  color: red
+  color: red;
+
+  margin: auto !important;
+  max-width: 90% !important;
+}
+
+.mat-snack-bar-container.snackbar-invalid {
+  max-width: fit-content;
 }
 
 .card-adri{

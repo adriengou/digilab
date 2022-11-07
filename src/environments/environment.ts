@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL:'http://127.0.0.1',
-  API_PORT:'3000',
+  API_URL:'https://digifab-chat.herokuapp.com',
+  //API_URL:'http://127.0.0.1:3000',
 };
 
 /*
