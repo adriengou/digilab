@@ -45,57 +45,60 @@ import {UserListResolver} from "./resolvers/user-list.resolver";
 const config: SocketIoConfig = { url: environment.API_URL, options: {} };
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserComponent,
-    AgePipe,
-    CssUrlPipe,
-    LoginFormComponent,
-    RegisterFormComponent,
-    ChatComponent,
-    PhoneCountryFormFieldComponent,
-    RegisterDialogComponent,
-    DirectoryDialogComponent,
-    DirectoriesComponent,
-    WeatherDialogFormComponent,
-    WeatherComponent,
-    MainComponent,
-    UserListComponent,
-    UserCardComponent,
-    ChatRoomComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatListModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatDialogModule,
-    NgxMaskModule.forRoot(),
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatButtonToggleModule,
-    MatToolbarModule,
-    MatChipsModule,
-    MatSnackBarModule,
-    SocketIoModule.forRoot(config),
+    declarations: [
+        AppComponent,
+        UserComponent,
+        AgePipe,
+        CssUrlPipe,
+        LoginFormComponent,
+        RegisterFormComponent,
+        ChatComponent,
+        PhoneCountryFormFieldComponent,
+        RegisterDialogComponent,
+        DirectoryDialogComponent,
+        DirectoriesComponent,
+        WeatherDialogFormComponent,
+        WeatherComponent,
+        MainComponent,
+        UserListComponent,
+        UserCardComponent,
+        ChatRoomComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatListModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatButtonModule,
+        MatDialogModule,
+        NgxMaskModule.forRoot(),
+        MatIconModule,
+        MatProgressSpinnerModule,
+        MatButtonToggleModule,
+        MatToolbarModule,
+        MatChipsModule,
+        MatSnackBarModule,
+        SocketIoModule.forRoot(config),
 
-  ],
+    ],
 
-  providers: [
-    {
-      provide:HTTP_INTERCEPTORS,
-      useClass:InterceptorService,
-      multi:true
-    }
-  ],
-  bootstrap: [AppComponent],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: InterceptorService,
+            multi: true
+        }
+    ],
+    bootstrap: [AppComponent],
+    exports: [
+        WeatherComponent
+    ]
 })
 export class AppModule {
 }

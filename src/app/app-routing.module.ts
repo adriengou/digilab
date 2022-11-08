@@ -86,6 +86,20 @@ const routes: Routes = [
     component: ChatRoomComponent,
     canActivate: [ AuthGuard ]
   },
+
+  { path: 'chat', loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule) },
+
+  { path: 'directories', loadChildren: () => import('./directories/directories.module').then(m => m.DirectoriesModule) },
+
+  { path: 'main', loadChildren: () => import('./main/main.module').then(m => m.MainModule) },
+
+  { path: 'weather', loadChildren: () => import('./weather/weather.module').then(m => m.WeatherModule) },
+
+  { path: 'login-form', loadChildren: () => import('./login-form/login-form.module').then(m => m.LoginFormModule) },
+
+  { path: 'register-form', loadChildren: () => import('./register-form/register-form.module').then(m => m.RegisterFormModule) },
+
+  { path: 'finder', loadChildren: () => import('./finder/finder.module').then(m => m.FinderModule) },
 ];
 
 @NgModule({

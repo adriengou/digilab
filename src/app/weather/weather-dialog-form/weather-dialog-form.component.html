@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="weatherForm">
+  <mat-form-field>
+    <mat-label for="street">Street</mat-label>
+    <input id="street" formControlName="street" matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label for="zipCode">Zip Code</mat-label>
+    <input id="zipCode" formControlName="zipCode" matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label for="city">City</mat-label>
+    <input id="city" formControlName="city" matInput>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Send</button>
+  <mat-spinner class="spinner" *ngIf="showSpinner"></mat-spinner>
+</form>
+
+
