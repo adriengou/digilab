@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this._activatedRoute.data.subscribe(({userList})=>{
+      console.warn("resolver subscribe: ", userList)
       this.users = userList.body
     })
   }

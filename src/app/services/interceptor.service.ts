@@ -18,7 +18,6 @@ export class InterceptorService implements HttpInterceptor {
     this.token = this._authService.getToken()
 
     if (this.token) {
-      console.warn(req.url, '--------------------------------')
 
       const tokenizedReq = req.url.includes(`${environment.API_URL}/api`)
         ? req.clone({

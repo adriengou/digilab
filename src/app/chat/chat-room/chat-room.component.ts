@@ -30,13 +30,10 @@ export class ChatRoomComponent implements OnInit {
     })
 
     this._chatService.loginSuccess.subscribe(()=>{
-      console.log('logged to socket io')
     })
 
     this._chatService.receivedMessage.subscribe((message:any)=>{
-      console.warn(message)
       if (message.userID?.username !== this.target?.username){
-        console.warn("messsage from someone else")
         this._snackBar.open(
           `${message.userID?.username} sent you: ${message.content}`,
           'ok',
@@ -143,9 +140,7 @@ export class ChatRoomComponent implements OnInit {
   }
 
   playAudio(name:string){
-    console.log("Playing Sound");
     let audio = new Audio(`assets/${name}`);
     //Can externalize the variables
-    audio.play().then(()=>console.log("song played"))
   }
 }

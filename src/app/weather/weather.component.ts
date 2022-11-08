@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Address} from "../../models/address.model";
+import {Address} from "../models/address.model";
 import {MatDialog} from "@angular/material/dialog";
-import {WeatherDialogFormComponent} from "../weather-dialog-form/weather-dialog-form.component";
+import {WeatherDialogFormComponent} from "./weather-dialog-form/weather-dialog-form.component";
 import {HttpClient} from "@angular/common/http";
-import {WeatherService} from "../../services/weather.service";
+import {WeatherService} from "../services/weather.service";
 
 @Component({
   selector: 'app-weather',

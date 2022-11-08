@@ -3,7 +3,7 @@
     <div class="user card-adri">
       <div class="image" [ngStyle]="{'background-image': 'url(https://picsum.photos/100/100)'}">
       </div>
-      <div class="user-name">
+      <div class="user-name" *ngIf="profile">
         <span>{{profile.firstName}}</span>
         <span>{{profile.lastName}}</span>
       </div>
@@ -17,21 +17,23 @@
     </div>
   </div>
   <div class="list">
-    <div [ngClass]="{'selected-user': (selectedUser === user.username) && checkFriend(user)}" (click)="setChatTarget(user); selectedUser=user.username" class="user card-adri" *ngFor="let user of filteredUsers; let index = index">
-      <div class="image" [ngStyle]="{'background-image': getAvatar(user)}">
-        <div class="status-circle" [ngClass]="{'green': connectedUsers.includes(user.username)}"></div>
-<!--        <p class="notification-circle">99+</p>-->
-        <p *ngIf="getMessageCount(user)" class="notification-circle">{{getMessageCount(user)}}</p>
+    <ng-container *ngIf="filteredUsers.length >= 1 && friends">
+      <div [ngClass]="{'selected-user': (selectedUser === user.username) && checkFriend(user)}" (click)="setChatTarget(user); selectedUser=user.username" class="user card-adri" *ngFor="let user of filteredUsers; let index = index">
+        <div class="image" [ngStyle]="{'background-image': getAvatar(user)}">
+          <div class="status-circle" [ngClass]="{'green': connectedUsers.includes(user.username)}"></div>
+          <!--        <p class="notification-circle">99+</p>-->
+          <p *ngIf="getMessageCount(user)" class="notification-circle">{{getMessageCount(user)}}</p>
+        </div>
+
+        <div class="user-name">
+          <span>{{user.firstName}}</span>
+          <span>{{user.lastName}}</span>
+        </div>
+
+        <mat-icon class="icon" style="color:green;" *ngIf="!checkFriend(user)" (click)="addFriend(user)">person_add</mat-icon>
+        <mat-icon class="icon" style="color:red;" *ngIf="checkFriend(user)" (click)="onRemoveFriend(user)">person_remove</mat-icon>
+
       </div>
-
-      <div class="user-name">
-        <span>{{user.firstName}}</span>
-        <span>{{user.lastName}}</span>
-      </div>
-
-      <mat-icon class="icon" style="color:green;" *ngIf="!checkFriend(user)" (click)="addFriend(user)">person_add</mat-icon>
-      <mat-icon class="icon" style="color:red;" *ngIf="checkFriend(user)" (click)="onRemoveFriend(user)">person_remove</mat-icon>
-
-    </div>
+    </ng-container>
   </div>
 </section>

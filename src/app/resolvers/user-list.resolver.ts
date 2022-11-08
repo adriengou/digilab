@@ -11,12 +11,12 @@ import {User} from "../models/user.model";
 @Injectable({
   providedIn: 'root'
 })
-export class UserListResolver implements Resolve<boolean> {
+export class UserListResolver implements Resolve<User[]> {
   constructor(private _userService:UserService) {}
 
   resolve(route: ActivatedRouteSnapshot,
           state: RouterStateSnapshot
-  ): Observable<any> {
+  ): Observable<User[]> {
     return this._userService.getUsersList()
   }
 }

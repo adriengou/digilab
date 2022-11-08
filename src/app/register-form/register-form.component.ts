@@ -5,20 +5,20 @@ import {
   FormArray,
   Validators, FormControl,
 } from '@angular/forms';
-import {CountriesService} from '../../services/countries.service';
+import {CountriesService} from '../services/countries.service';
 import {Observable, startWith, map} from 'rxjs';
-import {UserService} from '../../services/user-service.service';
+import {UserService} from '../services/user-service.service';
 import {MatDialog} from '@angular/material/dialog';
-import {RegisterDialogComponent} from '../register-dialog/register-dialog.component';
+import {RegisterDialogComponent} from './register-dialog/register-dialog.component';
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {MatChipInputEvent} from "@angular/material/chips";
-import {Register} from "../../models/register.model";
+import {Register} from "../models/register.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {User} from "../../models/user.model";
-import {ControlsOf} from "../../helpers/types/controls-of";
-import {Room} from "../../models/room.model";
-import {Message} from "../../models/message.model";
-import {AuthService} from "../../services/auth.service";
+import {User} from "../models/user.model";
+import {ControlsOf} from "../helpers/types/controls-of";
+import {Room} from "../models/room.model";
+import {Message} from "../models/message.model";
+import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 
 

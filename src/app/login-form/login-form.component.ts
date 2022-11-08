@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../services/user-service.service";
-import {Login} from "../../models/login.model";
-import {AuthService} from "../../services/auth.service";
+import {UserService} from "../services/user-service.service";
+import {Login} from "../models/login.model";
+import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
-import {User} from "../../models/user.model";
+import {User} from "../models/user.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
