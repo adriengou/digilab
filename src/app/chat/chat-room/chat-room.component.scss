@@ -37,7 +37,10 @@ section{
   padding-top: 10px;
   padding-bottom: 10px;
 
-  overflow-y: auto
+  overflow-y: auto;
+}
+.message-list :first-child{
+  margin-top: auto;
 }
 
 .top-bar,
