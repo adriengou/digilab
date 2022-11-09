@@ -1,99 +1,137 @@
+@import "../../styles/global";
 
 section{
-  padding: 5px;
   width: 100%;
   height: 100%;
 
-  //background-color: grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.nav-bar{
+  width: 100%;
+  height: 50px;
 
   display: flex;
   flex-direction: row;
-
-  gap: 5px;
   justify-content: center;
-}
-
-.panel{
-  flex: 1 1;
-  //background-color: lighten(gray, 10);
-  padding: 5px;
-}
-
-.left-panel{
-  width: fit-content;
-  flex: 0 0;
-}
-
-.middle-panel{
-  flex: 3 1;
-  min-width: 5%;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  height: 100%;
-}
-
-.top-bar, .main-content, .weather{
-  //background-color: lighten(gray, 20);
-  //padding: 5px;
-}
-
-.top-bar{
-  height: 5%;
   padding: 0;
+
+  background-color: $ag-primary;
+  font-weight: bold;
 }
 
-.main-content{
-  height: 95%;
-
-  min-width: 5%;
+.nav-bar > a{
+  color: white;
+  text-align: center;
+  width: 150px;
 }
 
-
-
-
-.right-panel{
-  display: flex;
-  flex-direction: column;
-}
-
-.weather{
-  //padding: 20px;
-  //flex: 1 1;
-  padding: 20px;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.weather > *{
-  height: 100%;
-  min-height: 0;
-}
-
-.nav-list{
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-  height: 100%;
-}
-
-.nav-list > a{
-  height: 100%;
+.content{
+  background-color: $ag-secondary;
+  height: calc(100% - 50px);
+  width: 100%;
 }
 
 
 
-
-@media screen and (max-width: 1000px ){
-  .left-panel,.right-panel{
-    display: none;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  section{
-    width: 200%;
-  }
-}
+//
+//section{
+//  padding: 5px;
+//  width: 100%;
+//  height: 100%;
+//
+//  //background-color: grey;
+//
+//  display: flex;
+//  flex-direction: row;
+//
+//  gap: 5px;
+//  justify-content: center;
+//}
+//
+//.panel{
+//  flex: 1 1;
+//  //background-color: lighten(gray, 10);
+//  padding: 5px;
+//}
+//
+//.left-panel{
+//  width: fit-content;
+//  flex: 0 0;
+//}
+//
+//.middle-panel{
+//  flex: 3 1;
+//  min-width: 5%;
+//  display: flex;
+//  flex-direction: column;
+//  gap: 5px;
+//  height: 100%;
+//}
+//
+//.top-bar, .main-content, .weather{
+//  //background-color: lighten(gray, 20);
+//  //padding: 5px;
+//}
+//
+//.top-bar{
+//  height: 5%;
+//  padding: 0;
+//}
+//
+//.main-content{
+//  height: 95%;
+//
+//  min-width: 5%;
+//}
+//
+//
+//
+//
+//.right-panel{
+//  display: flex;
+//  flex-direction: column;
+//}
+//
+//.weather{
+//  //padding: 20px;
+//  //flex: 1 1;
+//  padding: 20px;
+//  height: fit-content;
+//  display: flex;
+//  flex-direction: column;
+//  align-items: center;
+//}
+//
+//.weather > *{
+//  height: 100%;
+//  min-height: 0;
+//}
+//
+//.nav-list{
+//  display: flex;
+//  flex-direction: row;
+//  padding: 0;
+//  height: 100%;
+//}
+//
+//.nav-list > a{
+//  height: 100%;
+//}
+//
+//
+//
+//
+//@media screen and (max-width: 1000px ){
+//  .left-panel,.right-panel{
+//    display: none;
+//  }
+//}
+//
+//@media screen and (max-width: 800px) {
+//  section{
+//    width: 200%;
+//  }
+//}

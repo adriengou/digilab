@@ -12,11 +12,13 @@ import {Message} from "../../models/message.model";
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  friends!:User[]
+  @Input() profile!:User
   @Input() users!:User[]
+  @Input() friends!:User[]
+
   listToFilter!:User[]
   filteredUsers:User[] = []
-  profile!:User
+
   selectedUser!:string
   listFriends = false
   connectedUsers:string[] = []
@@ -30,15 +32,8 @@ export class UserListComponent implements OnInit {
               private _activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this._userService.getProfile().subscribe((val:any)=>{
-      this.profile = val.body
-
-      this.getUsers()
-      this.getFriends()
-      this.showUsers()
-    })
-
-
+    this.getUsers()
+    this.showUsers()
 
     this.search.valueChanges.subscribe(value => {
       this.filteredUsers = this.listToFilter.filter(user =>{
@@ -94,11 +89,7 @@ export class UserListComponent implements OnInit {
     })
   }
 
-  getFriends(){
-    this._userService.getFriends().subscribe((val:any)=>{
-      this.friends = val.body || []
-    })
-  }
+
 
   showFriends(){
     this._userService.getFriends().subscribe((val:any)=>{

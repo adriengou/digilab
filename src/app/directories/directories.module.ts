@@ -3,11 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { DirectoriesRoutingModule } from './directories-routing.module';
 import { DirectoriesComponent } from './directories.component';
-import {MatListModule} from "@angular/material/list";
-import {MatIconModule} from "@angular/material/icon";
 import {DirectoryDialogComponent} from "./directory-dialog/directory-dialog.component";
-import {ReactiveFormsModule} from "@angular/forms";
-import {MatFormFieldModule} from "@angular/material/form-field";
+import {SharedModule} from "../shared/shared.module";
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -18,10 +16,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
   imports: [
     CommonModule,
     DirectoriesRoutingModule,
-    MatListModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatFormFieldModule
+    MatDialogModule,
+    SharedModule
   ]
 })
 export class DirectoriesModule { }

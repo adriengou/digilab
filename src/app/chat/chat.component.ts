@@ -10,16 +10,20 @@ import {User} from "../models/user.model";
 })
 export class ChatComponent implements OnInit {
 
+  profile!:User
   users!:User[]
+  friends!:User[]
 
   constructor(private _activatedRoute:ActivatedRoute,
               private _userService:UserService,
               ) { }
 
   ngOnInit(): void {
-    this._activatedRoute.data.subscribe(({userList})=>{
-      console.warn("resolver subscribe: ", userList)
-      this.users = userList.body
+    this._activatedRoute.data.subscribe(({chatData})=>{
+      console.warn("resolver subscribe: ", chatData)
+      this.users = chatData.users.body
+      this.profile = chatData.profile.body
+      this.friends = chatData.friends.body
     })
   }
 

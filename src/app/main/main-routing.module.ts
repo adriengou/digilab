@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 import {ChatComponent} from "../chat/chat.component";
-import {UserListResolver} from "../resolvers/user-list.resolver";
+import {ChatResolver} from "../resolvers/chat.resolver";
 
 const routes: Routes = [
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
         path:'chat',
         component: ChatComponent,
         resolve:{
-          userList:UserListResolver
+          chatData:ChatResolver
         },
       }
     ]

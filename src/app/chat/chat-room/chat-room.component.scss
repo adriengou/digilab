@@ -7,7 +7,7 @@ section{
 }
 
 .top-bar{
-  height: 10%;
+  height: 70px;
   display: flex;
   gap: 5px;
 
@@ -37,7 +37,12 @@ section{
   padding-top: 10px;
   padding-bottom: 10px;
 
-  overflow-y: auto;
+  overflow-y: auto
+}
+
+.top-bar,
+.message-list{
+  border-bottom: 1px solid lightgray;
 }
 
 .message{
@@ -65,12 +70,8 @@ section{
 }
 
 .message-input{
-  height: 10%;
-
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  align-items: center;
+  width: calc(100% - 10px);
+  align-self: center;
 }
 
 .message-input > mat-form-field{
@@ -81,3 +82,7 @@ section{
   width: fit-content;
 }
 
+.top-bar,
+.message-list{
+  padding: 5px;
+}

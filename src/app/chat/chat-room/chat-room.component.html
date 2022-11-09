@@ -1,5 +1,5 @@
 <section>
-  <div class="top-bar card-adri">
+  <div class="top-bar">
     <div class="image" *ngIf="target" [ngStyle]="{'background-image': getAvatar(target)}">
     </div>
 
@@ -8,16 +8,16 @@
       <span>{{target.lastName}}</span>
     </div>
   </div>
-  <div class="message-list card-adri" #scrollMe>
+  <div class="message-list " #scrollMe>
     <ng-container *ngFor="let message of messages">
-      <div [ngClass]="{'right':message.userID?.username !== target.username }" class="card-adri message">
+      <div [ngClass]="{'right':message.userID?.username !== target.username }" class="message card-adri">
         <p class="message-content">{{message.content}}</p>
         <p class="message-date">{{getFormattedDate(message.date)}}</p>
       </div>
     </ng-container>
 
   </div>
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="outline" class="message-input">
     <mat-label>message</mat-label>
     <input matInput type="text" [formControl]="messageInput" (keypress)="onKeyPress($event)">
     <mat-icon matSuffix (click)="sendMessage()">send</mat-icon>

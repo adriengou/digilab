@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
-import {MatListModule} from "@angular/material/list";
 import {WeatherModule} from "../weather/weather.module";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -14,8 +14,8 @@ import {WeatherModule} from "../weather/weather.module";
   imports: [
     CommonModule,
     MainRoutingModule,
-    MatListModule,
-    WeatherModule
+    WeatherModule,
+    SharedModule
   ]
 })
 export class MainModule { }

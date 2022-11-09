@@ -1,6 +1,6 @@
 <section>
   <div class="top-bar">
-    <div class="user card-adri">
+    <div class="user">
       <div class="image" [ngStyle]="{'background-image': 'url(https://picsum.photos/100/100)'}">
       </div>
       <div class="user-name" *ngIf="profile">
@@ -8,17 +8,17 @@
         <span>{{profile.lastName}}</span>
       </div>
     </div>
-    <mat-form-field>
+    <mat-form-field appearance="outline" class="search">
       <input [formControl]="search" matInput placeholder="Search user...">
     </mat-form-field>
-    <div class="buttons">
-      <button mat-raised-button (click)="showUsers()">users</button>
-      <button mat-raised-button (click)="showFriends()">friends</button>
-    </div>
+    <mat-nav-list class="filter">
+      <a mat-list-item (click)="showUsers()">users</a>
+      <a mat-list-item (click)="showFriends()">friends</a>
+    </mat-nav-list>
   </div>
   <div class="list">
     <ng-container *ngIf="filteredUsers.length >= 1 && friends">
-      <div [ngClass]="{'selected-user': (selectedUser === user.username) && checkFriend(user)}" (click)="setChatTarget(user); selectedUser=user.username" class="user card-adri" *ngFor="let user of filteredUsers; let index = index">
+      <div [ngClass]="{'selected-user': (selectedUser === user.username) && checkFriend(user)}" (click)="setChatTarget(user); selectedUser=user.username" class="user" *ngFor="let user of filteredUsers; let index = index">
         <div class="image" [ngStyle]="{'background-image': getAvatar(user)}">
           <div class="status-circle" [ngClass]="{'green': connectedUsers.includes(user.username)}"></div>
           <!--        <p class="notification-circle">99+</p>-->

@@ -18,7 +18,7 @@
 <!--  </div>-->
 <!--</section>-->
 
-<section>
+<!--<section>
   <div class="left-panel panel">
 
   </div>
@@ -38,6 +38,15 @@
       <app-weather></app-weather>
     </div>
   </div>
+</section>-->
+<section>
+  <mat-nav-list class="nav-bar">
+    <a mat-list-item routerLink="/main/directories">Directories</a>
+    <a mat-list-item routerLink="/main/chat">Chat</a>
+    <a mat-list-item routerLink="/main/finder">Finder</a>
+  </mat-nav-list>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
 </section>
-
 

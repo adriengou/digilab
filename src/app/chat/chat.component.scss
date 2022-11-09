@@ -1,3 +1,7 @@
+@import "../../styles/global";
+
+$left-panel-width :500px;
+
 section{
   height: 100%;
   width: 100%;
@@ -7,18 +11,20 @@ section{
   flex-direction: row;
 
   padding: 0px;
-  gap: 5px;
 }
 
 
 
 .panel{
-  padding: 5px;
+  padding: 0px;
 }
 
 .left-panel{
-  flex: 1 1;
+  width:$left-panel-width;
   height: 100%;
+
+  //border-right: 1px solid lightgray;
+  background-color: darken($ag-secondary, 3);
 
   *{
     height: 100%;
@@ -26,19 +32,11 @@ section{
 }
 
 .main-panel{
-  flex: 2;
+  width: calc(100% - $left-panel-width);
   min-width: 5%;
-  padding: 0;
   height: 100%;
 
   *{
     height: 100%;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .panel{
-    flex: 1 1;
-    border: none;
   }
 }
